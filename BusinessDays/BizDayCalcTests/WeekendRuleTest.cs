@@ -1,11 +1,22 @@
 using Xunit;
 using BizDayCalc;
 using System;
+using System.Collections.Generic;
 
 namespace BizDayCalcTests
 {
     public class WeekendRuleTest
     {
+        public static IEnumerable<object[]> Days
+        {
+            get
+            {
+                yield return new object[] { true, new DateTime(2016, 6, 27) };
+                yield return new object[] { true, new DateTime(2016, 3, 1) };
+                yield return new object[] { false, new DateTime(2016, 6, 26) };
+                yield return new object[] { false, new DateTime(2016, 11, 12) };
+            }
+        }
         [Fact]
         public void ShouldReturnTrueIfBusinessDayIsNotAWeekend()
         {
@@ -21,10 +32,7 @@ namespace BizDayCalcTests
         }
 
         [Theory]
-        [InlineData(true, "2016-06-27")] // Monday
-        [InlineData(true, "2016-03-01")] // Tuesday
-        [InlineData(false, "2016-06-26")] // Sunday
-        [InlineData(false, "2016-11-12")] // Saturday
+        [MemberData(nameof(Days))]
         public void IsBusinessDay(bool expected, string date)
         {
             var rule = new WeekendRule();
