@@ -24,7 +24,6 @@ namespace BizDayCalcTests
         {
             calculator = new Calculator();
             calculator.AddRule(new HolidayRule());
-            Console.WriteLine("In USHolidayTest constructor");
         }
 
         [Theory]
@@ -32,7 +31,6 @@ namespace BizDayCalcTests
         public void TestHolidays(DateTime date)
         {
             Assert.False(calculator.IsBusinessDay(date));
-            Console.WriteLine($"In TestHolidays {date}");
         }
 
         [Theory]
@@ -41,7 +39,6 @@ namespace BizDayCalcTests
         public void TestNonHolidays(string date)
         {
             Assert.True(calculator.IsBusinessDay(DateTime.Parse(date)));
-            Console.WriteLine($"In TestNonHolidays {date:yyyy-MM-dd}");
         }
     }
 }
