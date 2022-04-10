@@ -1,5 +1,5 @@
-using System;
 using BizDayCalc;
+using Xunit;
 
 namespace BizDayCalcTests
 {
@@ -9,7 +9,6 @@ namespace BizDayCalcTests
 
         public USRegionFixture()
         {
-            Console.WriteLine("I am constructing");
             Calc = new Calculator();
             Calc.AddRule(new WeekendRule());
             Calc.AddRule(new HolidayRule());
@@ -20,5 +19,4 @@ namespace BizDayCalcTests
         {
         }
     }
-
 }
